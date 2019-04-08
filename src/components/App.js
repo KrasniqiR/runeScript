@@ -1,6 +1,7 @@
 import '../assets/css/App.css';
 import * as React from 'react';
 import * as reactDOM from 'react-dom';
+import {Spinner} from './Spinner';
 import { Component } from 'react';
 
 const { exec } = require('child_process');
@@ -16,19 +17,15 @@ export default class App extends Component {
     duration: 10,
     interval: 2000,
     count: 0,
-    end: false
+    scriptResult: '',
+    running: false
   };
 
-  componentDidUpdate(){
-    const { end } = this.state;
-
-    if (end) {
-      a.end
-    }
-  }
-
   render() {
-    const { duration, interval, count, kill } = this.state;
+    const { duration, interval, count, running } = this.state;
+    if (running) {
+      return <Spinner/>
+    }
     return (
       <div>
         <h1>RuneScript</h1>
@@ -57,29 +54,22 @@ export default class App extends Component {
 
   intervalChange = (e) => this.setState({ interval: e.target.value });
 
-  killChange(e) {
-    const { end } = this.state;
+  alch = async (e) => {
+    const { duration, interval, running, scriptResult } = this.state;
     e.preventDefault(e);
-    console.log(this.state);
-  }
 
+    const a = await exec(`node click.js ${(duration * 1000) + ' ' + interval}`, (error, stdout, stderr) => {
+      this.setState({running: true});
+      if (error) {
+        this.setState({ running: false});
+        return `error: ${stderr}`;
 
-  alch = (e) => {
-    const { duration, interval, end } = this.state;
-    e.preventDefault(e);
-    if (!end) {
-      const a = exec(`node click.js ${(duration * 1000) + ' ' + interval}`, (error, stdout, stderr) => {
-        if (error) {
-          console.error(`exec error: ${error}`);
-          return;
-        }
-        console.log(`stdout: ${stdout}`);
-        console.log(`stderr: ${stderr}`);
-      });
-    } else if (end) {
-      a.kill();
-    }
+      } else if (stdout) {
+        this.setState({running: false});
+        return `result: ${stdout}`;
+      }
+    });
+
+   result && this.setState({result: a});
   };
-
-
 }

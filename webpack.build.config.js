@@ -34,7 +34,15 @@ module.exports = {
         use: [{ loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]' }],
         include: defaultInclude
       },
-      { test: /\.node$/, loader: 'node-loader' }
+      { test: /\.node$/, loader: 'node-loader' },
+      {
+        test: /\.scss$/,
+        use: [
+          "style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+          "sass-loader" // compiles Sass to CSS, using Node Sass by default
+        ]
+      }
     ]
   },
   target: 'electron-renderer',
