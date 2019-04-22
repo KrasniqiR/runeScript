@@ -42,13 +42,11 @@
     "babel": "^6.23.0",
     "electron": "^4.0.0",
     "node-loader": "^0.6.0",
-    "node-sass": "^4.11.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "robotjs": "^0.5.1",
-    "sass-loader": "^7.1.0",
     "ts-loader": "^5.3.3",
     "typescript": "^3.4.2"
   },
@@ -76,7 +74,7 @@
     "postcss-nested": "^4.1.1",
     "postcss-pxtorem": "^4.0.1",
     "style-loader": "^0.23.1",
-    "webpack": "^4.29.6",
+    "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14"
   }

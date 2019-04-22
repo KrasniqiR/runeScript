@@ -17,7 +17,7 @@ function autoClick(duration, interval) {
     robot.setMouseDelay(interval + randomDelay);
     robot.mouseClick();
   }
-  ;
+  return;
 }
 
 autoClick(duration, interval);

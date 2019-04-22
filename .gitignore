@@ -53,5 +53,3 @@ ehthumbs.db
 #####################
 *.lnk
 .idea/workspace.xml
-.idea/workspace.xml
-yarn.lock
