@@ -1,6 +1,7 @@
 var robot = require('robotjs');
 const process = require('process');
 
+
 const args = process.argv;
 args.forEach((v, i) => {  //check args passed into script
   console.log(`${i}: ${v}`);
@@ -14,7 +15,11 @@ function autoClick(duration, interval) {
   let randomDelay;
   while ((Date.now() - start) < duration) {
     randomDelay = parseInt(Math.random() * 1000);
+
     robot.setMouseDelay(interval + randomDelay);
+    robot.mouseClick();
+
+    robot.setMouseDelay(500);
     robot.mouseClick();
   }
   return;
